@@ -5,10 +5,8 @@
 package Usuarios;
 
 import Modelo.Usuario;
-import static Usuarios.TablaUsuarios.tblUsuarios;
-import java.awt.Dialog;
+
 import java.util.Date;
-import javax.swing.table.DefaultTableModel;
 
 public class FormUsuario extends javax.swing.JInternalFrame {
 
@@ -18,12 +16,9 @@ public class FormUsuario extends javax.swing.JInternalFrame {
     private Date fechaNacimiento;
     private String nacionalidad;
     private Boolean sexoMasculino;
+    private static boolean fila = true;
 
     private TablaUsuarios tabla = new TablaUsuarios();
-
-    ;
-    
-   
 
     public FormUsuario() {
         initComponents();
@@ -371,14 +366,19 @@ public class FormUsuario extends javax.swing.JInternalFrame {
         Usuario usuario = new Usuario(nombre, apellido1, apellido2, fechaNacimiento, sexoMasculino, nacionalidad);
 
         try {
-            tabla.añadirCliente(usuario);           
+            tabla.añadirCliente(usuario);
+
+            if (fila) {
+                tabla.setLocation(790, 0);
+                RegistroUsuarios.panelFondo.add(tabla);
+                tabla.setVisible(true);
+            }
+
         } catch (Exception e) {
-            
+            e.printStackTrace();
         }
 
-        RegistroUsuarios.panelFondo.add(tabla);
-        tabla.setVisible(true);
-
+        fila = false;
 
     }//GEN-LAST:event_btnAceptarActionPerformed
 
