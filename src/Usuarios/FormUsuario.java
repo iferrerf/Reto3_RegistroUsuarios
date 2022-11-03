@@ -5,6 +5,7 @@
 package Usuarios;
 
 import Modelo.Usuario;
+import java.util.ArrayList;
 
 import java.util.Date;
 
@@ -16,6 +17,9 @@ public class FormUsuario extends javax.swing.JInternalFrame {
     private Date fechaNacimiento;
     private String nacionalidad;
     private Boolean sexoMasculino;
+    private String descripcion;
+    private ArrayList<String> apariencias;
+    
     private static boolean fila = true;
 
     private TablaUsuarios tabla = new TablaUsuarios();
@@ -362,42 +366,50 @@ public class FormUsuario extends javax.swing.JInternalFrame {
         fechaNacimiento = dchNacimiento.getDate();
         nacionalidad = cboxNacionalidad.getSelectedItem().toString();
         sexoMasculino = rbtnMasculino.isSelected();
+        descripcion = txtaDescripcion.getText();
+        lstApariencias.getSelectedValuesList();
+        
 
-        Usuario usuario = new Usuario(nombre, apellido1, apellido2, fechaNacimiento, sexoMasculino, nacionalidad);
+        if (nombre != null && apellido1 != null && apellido2 != null && fechaNacimiento != null
+                && nacionalidad != null && sexoMasculino != null) {
 
-        try {
-            tabla.añadirCliente(usuario);
+            Usuario usuario = new Usuario(nombre, apellido1, apellido2, fechaNacimiento, sexoMasculino, nacionalidad, descripcion, apariencias);
 
-            if (fila) {
-                tabla.setLocation(790, 0);
-                RegistroUsuarios.panelFondo.add(tabla);
-                tabla.setVisible(true);
+            try {
+                tabla.añadirCliente(usuario);
+
+                if (fila) {
+                    tabla.setLocation(790, 0);
+                    RegistroUsuarios.panelFondo.add(tabla);
+                    tabla.setVisible(true);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            fila = false;
         }
 
-        fila = false;
 
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        txtNombre.setText("");
-        txtApellido1.setText("");
-        txtApellido2.setText("");
-        txtaDescripcion.setText("");
+        txtNombre.setText(null);
+        txtApellido1.setText(null);
+        txtApellido2.setText(null);
+        txtaDescripcion.setText(null);
         dchNacimiento.setDate(null);
         lstApariencias.clearSelection();
         grbtnSexo.clearSelection();
         chboxFoto.setSelected(false);
         chboxFecha.setSelected(false);
+
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        tabla.dispose();
         dispose();
-
-
     }//GEN-LAST:event_btnSalirActionPerformed
 
 

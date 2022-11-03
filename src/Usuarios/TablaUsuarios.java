@@ -21,18 +21,21 @@ public class TablaUsuarios extends javax.swing.JInternalFrame {
         inicializarTabla();
     }
 
-    
-    private void inicializarTabla(){
+    private void inicializarTabla() {
         DefaultTableModel dtm = new DefaultTableModel();
-        dtm.setColumnIdentifiers(new String[] {"Nombre", "Primer Apellido", "Segundo Apellido", "Fecha Nacimiento", "Sexo M", "Nacionalidad"});
+        dtm.setColumnIdentifiers(new String[]{"Nombre", "Primer Apellido", "Segundo Apellido", "Fecha Nacimiento", "Sexo Masc", "Nacionalidad", "Descripcion", "Apariencias"});
         tblUsuarios.setModel(dtm);
     }
-    
-    public void añadirCliente(Usuario usuario){
+
+    public void añadirCliente(Usuario usuario) {
         DefaultTableModel dtm = (DefaultTableModel) tblUsuarios.getModel();
-        dtm.addRow(usuario.toArrayList());
+
+        if (usuario != null) {
+            dtm.addRow(usuario.toArrayList());
+
+        }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -66,7 +69,7 @@ public class TablaUsuarios extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlTable, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
+            .addComponent(pnlTable, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

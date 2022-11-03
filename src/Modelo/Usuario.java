@@ -5,6 +5,7 @@
 package Modelo;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Usuario {
@@ -15,16 +16,38 @@ public class Usuario {
     private Date fechaNacimiento;
     private Boolean sexoMasculino;
     private String nacionalidad;
-    private final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+    private String descripcion;
+    private ArrayList<String> apariencias;
 
-    public Usuario(String nombre, String apellido1, String apellido2, Date fechaNacimiento, Boolean sexoMasculino, String nacionalidad) {
+    public Usuario(String nombre, String apellido1, String apellido2, Date fechaNacimiento, Boolean sexoMasculino, String nacionalidad, String descripcion, ArrayList<String> apariencias) {
         this.nombre = nombre;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
         this.fechaNacimiento = fechaNacimiento;
         this.sexoMasculino = sexoMasculino;
         this.nacionalidad = nacionalidad;
+        this.descripcion = descripcion;
+        this.apariencias = apariencias;
     }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public ArrayList<String> getApariencias() {
+        return apariencias;
+    }
+
+    public void setApariencias(ArrayList<String> apariencias) {
+        this.apariencias = apariencias;
+    }
+    
+    private final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
 
     public String getNombre() {
         return nombre;
@@ -75,13 +98,15 @@ public class Usuario {
     }
     
     public String[] toArrayList(){
-        String[] s = new String[6];
+        String[] s = new String[8];
         s[0] = nombre;
         s[1] = apellido1;
         s[2] = apellido2;
         s[3] = sdf.format(fechaNacimiento);
         s[4] = sexoMasculino.toString();
         s[5] = nacionalidad;
+        s[6] = descripcion;
+        s[7] = apariencias.toString();
        
         return s;
     }
