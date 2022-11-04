@@ -8,6 +8,7 @@ import Modelo.Usuario;
 import java.util.ArrayList;
 
 import java.util.Date;
+import java.util.List;
 
 public class FormUsuario extends javax.swing.JInternalFrame {
 
@@ -18,7 +19,8 @@ public class FormUsuario extends javax.swing.JInternalFrame {
     private String nacionalidad;
     private Boolean sexoMasculino;
     private String descripcion;
-    private ArrayList<String> apariencias;
+    private List<String> apariencias;
+    public static Boolean mostrarFecha;
     
     private static boolean fila = true;
 
@@ -367,12 +369,13 @@ public class FormUsuario extends javax.swing.JInternalFrame {
         nacionalidad = cboxNacionalidad.getSelectedItem().toString();
         sexoMasculino = rbtnMasculino.isSelected();
         descripcion = txtaDescripcion.getText();
-        lstApariencias.getSelectedValuesList();
-        
+        apariencias = lstApariencias.getSelectedValuesList();
+        mostrarFecha = chboxFecha.isSelected();
 
         if (nombre != null && apellido1 != null && apellido2 != null && fechaNacimiento != null
-                && nacionalidad != null && sexoMasculino != null) {
+                && nacionalidad != null && sexoMasculino != null && descripcion != null && lstApariencias != null) {
 
+            
             Usuario usuario = new Usuario(nombre, apellido1, apellido2, fechaNacimiento, sexoMasculino, nacionalidad, descripcion, apariencias);
 
             try {

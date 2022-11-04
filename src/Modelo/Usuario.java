@@ -4,9 +4,11 @@
  */
 package Modelo;
 
+import Usuarios.FormUsuario;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Usuario {
 
@@ -17,9 +19,9 @@ public class Usuario {
     private Boolean sexoMasculino;
     private String nacionalidad;
     private String descripcion;
-    private ArrayList<String> apariencias;
+    private List<String> apariencias;
 
-    public Usuario(String nombre, String apellido1, String apellido2, Date fechaNacimiento, Boolean sexoMasculino, String nacionalidad, String descripcion, ArrayList<String> apariencias) {
+    public Usuario(String nombre, String apellido1, String apellido2, Date fechaNacimiento, Boolean sexoMasculino, String nacionalidad, String descripcion, List<String> apariencias) {
         this.nombre = nombre;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
@@ -38,16 +40,15 @@ public class Usuario {
         this.descripcion = descripcion;
     }
 
-    public ArrayList<String> getApariencias() {
+    public List<String> getApariencias() {
         return apariencias;
     }
 
-    public void setApariencias(ArrayList<String> apariencias) {
+    public void setApariencias(List<String> apariencias) {
         this.apariencias = apariencias;
     }
-    
-    private final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
+    private final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
     public String getNombre() {
         return nombre;
@@ -96,18 +97,33 @@ public class Usuario {
     public void setNacionalidad(String nacionalidad) {
         this.nacionalidad = nacionalidad;
     }
-    
-    public String[] toArrayList(){
+
+    public String[] toArrayList() {
+
         String[] s = new String[8];
         s[0] = nombre;
         s[1] = apellido1;
         s[2] = apellido2;
-        s[3] = sdf.format(fechaNacimiento);
+
+        if (FormUsuario.mostrarFecha == false) {
+            s[3] = "";
+        } else {
+            s[3] = sdf.format(fechaNacimiento);
+
+        }
+
         s[4] = sexoMasculino.toString();
         s[5] = nacionalidad;
         s[6] = descripcion;
-        s[7] = apariencias.toString();
-       
+        s[7] = " ";
+        for (int i = 0; i < apariencias.size(); i++) {
+            if (i < apariencias.size() - 1) {
+                s[7] += apariencias.get(i) + ", ";
+
+            } else {
+                s[7] += apariencias.get(i);
+            }
+        }
         return s;
     }
 
